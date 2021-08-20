@@ -1,0 +1,202 @@
+<form class="add-task" (ngSubmit)="addtask()">
+  <h3 (click)="toggle('identite')">identité</h3>
+
+  <div  *ngIf="identite" fxLayout="column">
+    <div fxLayout="row" fxLayoutAlign="space-around center">
+      <div class="form-control" fxLayout="column">
+        <label for="text">Civilité</label>
+        <input
+          type="text"
+          name="text"
+          [(ngModel)]="text"
+          id="text"
+          placeholder="Add Task"
+        />
+      </div>
+      <div class="form-control" fxLayout="column">
+        <label for="date">Day & time</label>
+        <input
+          type="text"
+          name="date"
+          [(ngModel)]="date"
+          id="date"
+          placeholder="Add Day & time"
+        />
+      </div>
+      <div class="form-control" fxLayout="column">
+        <label for="date">Day & time</label>
+        <input
+          type="text"
+          name="date"
+          [(ngModel)]="date"
+          id="date"
+          placeholder="Add Day & time"
+        />
+      </div>
+    </div>
+
+    <div class="form-control" fxLayout="column">
+      <label for="date">Day & time</label>
+      <input
+        type="text"
+        name="date"
+        [(ngModel)]="date"
+        id="date"
+        placeholder="Add Day & time"
+      />
+    </div>
+    <div class="form-control" fxLayout="column">
+      <label for="date">Day & time</label>
+      <input
+        type="text"
+        name="date"
+        [(ngModel)]="date"
+        id="date"
+        placeholder="Add Day & time"
+      />
+    </div>
+    <div class="form-control" fxLayout="column">
+      <label for="date">Day & time</label>
+      <input
+        type="text"
+        name="date"
+        [(ngModel)]="date"
+        id="date"
+        placeholder="Add Day & time"
+      />
+    </div>
+  </div>
+  <h3 (click)="toggle('contact')">Contact</h3>
+  <div  *ngIf="contact" fxLayout="column">
+    <div fxLayout="row" fxLayoutAlign="space-around center">
+      <div class="form-control" fxLayout="column">
+        <label for="text">Civilité</label>
+        <input
+          type="text"
+          name="text"
+          [(ngModel)]="text"
+          id="text"
+          placeholder="Add Task"
+        />
+      </div>
+      <div class="form-control" fxLayout="column">
+        <label for="date">Day & time</label>
+        <input
+          type="text"
+          name="date"
+          [(ngModel)]="date"
+          id="date"
+          placeholder="Add Day & time"
+        />
+      </div>
+      <div class="form-control" fxLayout="column">
+        <label for="date">Day & time</label>
+        <input
+          type="text"
+          name="date"
+          [(ngModel)]="date"
+          id="date"
+          placeholder="Add Day & time"
+        />
+      </div>
+    </div>
+
+    <div class="form-control" fxLayout="column">
+      <label for="date">Day & time</label>
+      <input
+        type="text"
+        name="date"
+        [(ngModel)]="date"
+        id="date"
+        placeholder="Add Day & time"
+      />
+    </div>
+    <div class="form-control" fxLayout="column">
+      <label for="date">Day & time</label>
+      <input
+        type="text"
+        name="date"
+        [(ngModel)]="date"
+        id="date"
+        placeholder="Add Day & time"
+      />
+    </div>
+    <div class="form-control" fxLayout="column">
+      <label for="date">Day & time</label>
+      <input
+        type="text"
+        name="date"
+        [(ngModel)]="date"
+        id="date"
+        placeholder="Add Day & time"
+      />
+    </div>
+  </div>
+  <h3 (click)="toggle('adresse')">Adresse</h3>
+  <div *ngIf="adresse" fxLayout="column">
+    <div fxLayout="row" fxLayoutAlign="space-around center">
+      <div class="form-control" fxLayout="column">
+        <label for="text">Civilité</label>
+        <input
+          type="text"
+          name="text"
+          [(ngModel)]="text"
+          id="text"
+          placeholder="Add Task"
+        />
+      </div>
+      <div class="form-control" fxLayout="column">
+        <label for="date">Day & time</label>
+        <input
+          type="text"
+          name="date"
+          [(ngModel)]="date"
+          id="date"
+          placeholder="Add Day & time"
+        />
+      </div>
+      <div class="form-control" fxLayout="column">
+        <label for="date">Day & time</label>
+        <input
+          type="text"
+          name="date"
+          [(ngModel)]="date"
+          id="date"
+          placeholder="Add Day & time"
+        />
+      </div>
+    </div>
+
+    <div class="form-control" fxLayout="column">
+      <label for="date">Day & time</label>
+      <input
+        type="text"
+        name="date"
+        [(ngModel)]="date"
+        id="date"
+        placeholder="Add Day & time"
+      />
+    </div>
+    <div class="form-control" fxLayout="column">
+      <label for="date">Day & time</label>
+      <input
+        type="text"
+        name="date"
+        [(ngModel)]="date"
+        id="date"
+        placeholder="Add Day & time"
+      />
+    </div>
+    <div class="form-control" fxLayout="column">
+      <label for="date">Day & time</label>
+      <input
+        type="text"
+        name="date"
+        [(ngModel)]="date"
+        id="date"
+        placeholder="Add Day & time"
+      />
+    </div>
+  </div>
+  <input type="submit" value="Add Task" class="btn btn-block" />
+</form>
