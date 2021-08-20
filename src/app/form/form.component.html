@@ -1,201 +1,298 @@
 <form class="add-task" (ngSubmit)="addtask()">
-  <h3 (click)="toggle('identite')">identité</h3>
+  <p
+    style="font-size: 18px; font-weight: 400; margin-left: 50px; color: #034ea2"
+    (click)="toggle('identite')"
+  >
+    + Identité
+  </p>
 
-  <div  *ngIf="identite" fxLayout="column">
+  <div *ngIf="identite" fxLayout="column">
     <div fxLayout="row" fxLayoutAlign="space-around center">
-      <div class="form-control" fxLayout="column">
+      <div fxFlex="20" class="form-control" fxLayout="column">
         <label for="text">Civilité</label>
-        <input
-          type="text"
-          name="text"
-          [(ngModel)]="text"
-          id="text"
-          placeholder="Add Task"
-        />
+        <mat-form-field>
+          <mat-label>Select</mat-label>
+          <mat-select>
+            <mat-option value="one">M.</mat-option>
+            <mat-option value="two">Mme.</mat-option>
+          </mat-select>
+        </mat-form-field>
       </div>
-      <div class="form-control" fxLayout="column">
-        <label for="date">Day & time</label>
-        <input
-          type="text"
-          name="date"
-          [(ngModel)]="date"
-          id="date"
-          placeholder="Add Day & time"
-        />
+      <div fxFlex="35" class="form-control" fxLayout="column">
+        <label for="date">Nom</label>
+        <mat-form-field>
+          <mat-label>Tapez votre nom ici</mat-label>
+          <input matInput />
+        </mat-form-field>
       </div>
-      <div class="form-control" fxLayout="column">
-        <label for="date">Day & time</label>
-        <input
-          type="text"
-          name="date"
-          [(ngModel)]="date"
-          id="date"
-          placeholder="Add Day & time"
-        />
+      <div fxFlex="35" class="form-control" fxLayout="column">
+        <label for="date">Prénom</label>
+        <mat-form-field>
+          <mat-label>Tapez votre Prénom ici</mat-label>
+          <input matInput />
+        </mat-form-field>
       </div>
     </div>
 
-    <div class="form-control" fxLayout="column">
-      <label for="date">Day & time</label>
-      <input
-        type="text"
-        name="date"
-        [(ngModel)]="date"
-        id="date"
-        placeholder="Add Day & time"
-      />
+    <div
+      style="margin-right: 20px; margin-left: 20px"
+      class="form-control"
+      fxLayout="column"
+    >
+      <label for="date">Date de naissance</label>
+      <mat-form-field>
+        <mat-label>Choisissez une date</mat-label>
+        <input matInput [matDatepicker]="picker" />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
     </div>
-    <div class="form-control" fxLayout="column">
-      <label for="date">Day & time</label>
-      <input
-        type="text"
-        name="date"
-        [(ngModel)]="date"
-        id="date"
-        placeholder="Add Day & time"
-      />
+    <div
+      style="margin-right: 20px; margin-left: 20px"
+      class="form-control"
+      fxLayout="column"
+    >
+      <label for="date">Situation Familiale</label>
+      <mat-form-field>
+        <mat-label>Select</mat-label>
+        <mat-select>
+          <mat-option value="one">Mariés</mat-option>
+          <mat-option value="two">Divorcé(e)</mat-option>
+          <mat-option value="three">Veuf(ve)</mat-option>
+          <mat-option value="four">Célibataire</mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
-    <div class="form-control" fxLayout="column">
-      <label for="date">Day & time</label>
-      <input
-        type="text"
-        name="date"
-        [(ngModel)]="date"
-        id="date"
-        placeholder="Add Day & time"
-      />
+    <div
+      style="margin-right: 20px; margin-left: 20px"
+      class="form-control"
+      fxLayout="column"
+    >
+      <mat-form-field>
+        <input matInput type="number" placeholder="Nombre d'Enfants" />
+      </mat-form-field>
     </div>
   </div>
-  <h3 (click)="toggle('contact')">Contact</h3>
-  <div  *ngIf="contact" fxLayout="column">
+  <p
+    style="font-size: 18px; font-weight: 400; margin-left: 50px; color: #034ea2"
+    (click)="toggle('contact')"
+  >
+    + Contact
+  </p>
+
+  <div *ngIf="contact" fxLayout="column">
     <div fxLayout="row" fxLayoutAlign="space-around center">
-      <div class="form-control" fxLayout="column">
+      <div fxFlex="20" class="form-control" fxLayout="column">
         <label for="text">Civilité</label>
-        <input
-          type="text"
-          name="text"
-          [(ngModel)]="text"
-          id="text"
-          placeholder="Add Task"
-        />
+        <mat-form-field>
+          <mat-label>Select</mat-label>
+          <mat-select>
+            <mat-option value="one">M.</mat-option>
+            <mat-option value="two">Mme.</mat-option>
+          </mat-select>
+        </mat-form-field>
       </div>
-      <div class="form-control" fxLayout="column">
-        <label for="date">Day & time</label>
-        <input
-          type="text"
-          name="date"
-          [(ngModel)]="date"
-          id="date"
-          placeholder="Add Day & time"
-        />
+      <div fxFlex="35" class="form-control" fxLayout="column">
+        <label for="date">Nom</label>
+        <mat-form-field>
+          <mat-label>Tapez votre nom ici</mat-label>
+          <input matInput />
+        </mat-form-field>
       </div>
-      <div class="form-control" fxLayout="column">
-        <label for="date">Day & time</label>
-        <input
-          type="text"
-          name="date"
-          [(ngModel)]="date"
-          id="date"
-          placeholder="Add Day & time"
-        />
+      <div fxFlex="35" class="form-control" fxLayout="column">
+        <label for="date">Prénom</label>
+        <mat-form-field>
+          <mat-label>Tapez votre Prénom ici</mat-label>
+          <input matInput />
+        </mat-form-field>
       </div>
     </div>
 
-    <div class="form-control" fxLayout="column">
-      <label for="date">Day & time</label>
-      <input
-        type="text"
-        name="date"
-        [(ngModel)]="date"
-        id="date"
-        placeholder="Add Day & time"
-      />
+    <div
+      style="margin-right: 20px; margin-left: 20px"
+      class="form-control"
+      fxLayout="column"
+    >
+      <label for="date">Date de naissance</label>
+      <mat-form-field>
+        <mat-label>Choisissez une date</mat-label>
+        <input matInput [matDatepicker]="picker" />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
     </div>
-    <div class="form-control" fxLayout="column">
-      <label for="date">Day & time</label>
-      <input
-        type="text"
-        name="date"
-        [(ngModel)]="date"
-        id="date"
-        placeholder="Add Day & time"
-      />
+    <div
+      style="margin-right: 20px; margin-left: 20px"
+      class="form-control"
+      fxLayout="column"
+    >
+      <label for="date">Situation Familiale</label>
+      <mat-form-field>
+        <mat-label>Select</mat-label>
+        <mat-select>
+          <mat-option value="one">Mariés</mat-option>
+          <mat-option value="two">Divorcé(e)</mat-option>
+          <mat-option value="three">Veuf(ve)</mat-option>
+          <mat-option value="four">Célibataire</mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
-    <div class="form-control" fxLayout="column">
-      <label for="date">Day & time</label>
-      <input
-        type="text"
-        name="date"
-        [(ngModel)]="date"
-        id="date"
-        placeholder="Add Day & time"
-      />
+    <div
+      style="margin-right: 20px; margin-left: 20px"
+      class="form-control"
+      fxLayout="column"
+    >
+      <mat-form-field>
+        <input matInput type="number" placeholder="Nombre d'Enfants" />
+      </mat-form-field>
     </div>
   </div>
-  <h3 (click)="toggle('adresse')">Adresse</h3>
+  <p
+    style="font-size: 18px; font-weight: 400; margin-left: 50px; color: #034ea2"
+    (click)="toggle('adresse')"
+  >
+    + Adresse
+  </p>
+
   <div *ngIf="adresse" fxLayout="column">
     <div fxLayout="row" fxLayoutAlign="space-around center">
-      <div class="form-control" fxLayout="column">
+      <div fxFlex="20" class="form-control" fxLayout="column">
         <label for="text">Civilité</label>
-        <input
-          type="text"
-          name="text"
-          [(ngModel)]="text"
-          id="text"
-          placeholder="Add Task"
-        />
+        <mat-form-field>
+          <mat-label>Select</mat-label>
+          <mat-select>
+            <mat-option value="one">M.</mat-option>
+            <mat-option value="two">Mme.</mat-option>
+          </mat-select>
+        </mat-form-field>
       </div>
-      <div class="form-control" fxLayout="column">
-        <label for="date">Day & time</label>
-        <input
-          type="text"
-          name="date"
-          [(ngModel)]="date"
-          id="date"
-          placeholder="Add Day & time"
-        />
+      <div fxFlex="35" class="form-control" fxLayout="column">
+        <label for="date">Nom</label>
+        <mat-form-field>
+          <mat-label>Tapez votre nom ici</mat-label>
+          <input matInput />
+        </mat-form-field>
       </div>
-      <div class="form-control" fxLayout="column">
-        <label for="date">Day & time</label>
-        <input
-          type="text"
-          name="date"
-          [(ngModel)]="date"
-          id="date"
-          placeholder="Add Day & time"
-        />
+      <div fxFlex="35" class="form-control" fxLayout="column">
+        <label for="date">Prénom</label>
+        <mat-form-field>
+          <mat-label>Tapez votre Prénom ici</mat-label>
+          <input matInput />
+        </mat-form-field>
       </div>
     </div>
 
-    <div class="form-control" fxLayout="column">
-      <label for="date">Day & time</label>
-      <input
-        type="text"
-        name="date"
-        [(ngModel)]="date"
-        id="date"
-        placeholder="Add Day & time"
-      />
+    <div
+      style="margin-right: 20px; margin-left: 20px"
+      class="form-control"
+      fxLayout="column"
+    >
+      <label for="date">Date de naissance</label>
+      <mat-form-field>
+        <mat-label>Choisissez une date</mat-label>
+        <input matInput [matDatepicker]="picker" />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
     </div>
-    <div class="form-control" fxLayout="column">
-      <label for="date">Day & time</label>
-      <input
-        type="text"
-        name="date"
-        [(ngModel)]="date"
-        id="date"
-        placeholder="Add Day & time"
-      />
+    <div
+      style="margin-right: 20px; margin-left: 20px"
+      class="form-control"
+      fxLayout="column"
+    >
+      <label for="date">Situation Familiale</label>
+      <mat-form-field>
+        <mat-label>Select</mat-label>
+        <mat-select>
+          <mat-option value="one">Mariés</mat-option>
+          <mat-option value="two">Divorcé(e)</mat-option>
+          <mat-option value="three">Veuf(ve)</mat-option>
+          <mat-option value="four">Célibataire</mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
-    <div class="form-control" fxLayout="column">
-      <label for="date">Day & time</label>
-      <input
-        type="text"
-        name="date"
-        [(ngModel)]="date"
-        id="date"
-        placeholder="Add Day & time"
-      />
+    <div
+      style="margin-right: 20px; margin-left: 20px"
+      class="form-control"
+      fxLayout="column"
+    >
+      <mat-form-field>
+        <input matInput type="number" placeholder="Nombre d'Enfants" />
+      </mat-form-field>
+    </div>
+  </div>
+  <p
+    style="font-size: 18px; font-weight: 400; margin-left: 50px; color: #034ea2"
+    (click)="toggle('info')"
+  >
+    + Informations complémentaires
+  </p>
+
+  <div *ngIf="info" fxLayout="column">
+    <div fxLayout="row" fxLayoutAlign="space-around center">
+      <div fxFlex="20" class="form-control" fxLayout="column">
+        <label for="text">Civilité</label>
+        <mat-form-field>
+          <mat-label>Select</mat-label>
+          <mat-select>
+            <mat-option value="one">M.</mat-option>
+            <mat-option value="two">Mme.</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div fxFlex="35" class="form-control" fxLayout="column">
+        <label for="date">Nom</label>
+        <mat-form-field>
+          <mat-label>Tapez votre nom ici</mat-label>
+          <input matInput />
+        </mat-form-field>
+      </div>
+      <div fxFlex="35" class="form-control" fxLayout="column">
+        <label for="date">Prénom</label>
+        <mat-form-field>
+          <mat-label>Tapez votre Prénom ici</mat-label>
+          <input matInput />
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div
+      style="margin-right: 20px; margin-left: 20px"
+      class="form-control"
+      fxLayout="column"
+    >
+      <label for="date">Date de naissance</label>
+      <mat-form-field>
+        <mat-label>Choisissez une date</mat-label>
+        <input matInput [matDatepicker]="picker" />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div
+      style="margin-right: 20px; margin-left: 20px"
+      class="form-control"
+      fxLayout="column"
+    >
+      <label for="date">Situation Familiale</label>
+      <mat-form-field>
+        <mat-label>Select</mat-label>
+        <mat-select>
+          <mat-option value="one">Mariés</mat-option>
+          <mat-option value="two">Divorcé(e)</mat-option>
+          <mat-option value="three">Veuf(ve)</mat-option>
+          <mat-option value="four">Célibataire</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div
+      style="margin-right: 20px; margin-left: 20px"
+      class="form-control"
+      fxLayout="column"
+    >
+      <mat-form-field>
+        <input matInput type="number" placeholder="Nombre d'Enfants" />
+      </mat-form-field>
     </div>
   </div>
   <input type="submit" value="Add Task" class="btn btn-block" />

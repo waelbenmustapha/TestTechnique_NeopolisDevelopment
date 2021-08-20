@@ -12,6 +12,7 @@ export class FormComponent implements OnInit {
 identite:boolean=true;
 contact:boolean=true;
 adresse:boolean=true;
+basicDatepicker:any;
 info:boolean=true;
   constructor() { }
 
