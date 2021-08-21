@@ -1,17 +1,24 @@
 <form class="add-task" (ngSubmit)="addtask()">
   <p
+    *ngIf="identite == false"
     style="font-size: 18px; font-weight: 400; margin-left: 50px; color: #034ea2"
     (click)="toggle('identite')"
   >
     + Identité
   </p>
+  <p
+    *ngIf="identite == true"
+    style="font-size: 18px; font-weight: 400; margin-left: 50px; color: #034ea2"
+    (click)="toggle('identite')"
+  >
+    - Identité
+  </p>
 
   <div *ngIf="identite" fxLayout="column">
     <div fxLayout="row" fxLayoutAlign="space-around center">
       <div fxFlex="20" class="form-control" fxLayout="column">
-        <label for="text">Civilité</label>
         <mat-form-field>
-          <mat-label>Select</mat-label>
+          <mat-label>Civilité</mat-label>
           <mat-select>
             <mat-option value="one">M.</mat-option>
             <mat-option value="two">Mme.</mat-option>
@@ -19,17 +26,17 @@
         </mat-form-field>
       </div>
       <div fxFlex="35" class="form-control" fxLayout="column">
-        <label for="date">Nom</label>
-        <mat-form-field>
-          <mat-label>Tapez votre nom ici</mat-label>
+        <mat-form-field appearance="legacy">
+          <mat-label>Nom</mat-label>
           <input matInput />
+          <mat-icon matSuffix>person</mat-icon>
         </mat-form-field>
       </div>
       <div fxFlex="35" class="form-control" fxLayout="column">
-        <label for="date">Prénom</label>
-        <mat-form-field>
-          <mat-label>Tapez votre Prénom ici</mat-label>
+        <mat-form-field appearance="legacy">
+          <mat-label>Prénom</mat-label>
           <input matInput />
+          <mat-icon matSuffix>person</mat-icon>
         </mat-form-field>
       </div>
     </div>
@@ -39,9 +46,8 @@
       class="form-control"
       fxLayout="column"
     >
-      <label for="date">Date de naissance</label>
-      <mat-form-field>
-        <mat-label>Choisissez une date</mat-label>
+      <mat-form-field appearance="legacy">
+        <mat-label>Date de naissance</mat-label>
         <input matInput [matDatepicker]="picker" />
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
@@ -52,9 +58,8 @@
       class="form-control"
       fxLayout="column"
     >
-      <label for="date">Situation Familiale</label>
-      <mat-form-field>
-        <mat-label>Select</mat-label>
+      <mat-form-field appearance="legacy">
+        <mat-label>Situation Familiale</mat-label>
         <mat-select>
           <mat-option value="one">Mariés</mat-option>
           <mat-option value="two">Divorcé(e)</mat-option>
@@ -70,115 +75,185 @@
     >
       <mat-form-field>
         <input matInput type="number" placeholder="Nombre d'Enfants" />
+        <mat-icon matSuffix>groups</mat-icon>
       </mat-form-field>
     </div>
   </div>
   <p
+    *ngIf="contact == false"
     style="font-size: 18px; font-weight: 400; margin-left: 50px; color: #034ea2"
     (click)="toggle('contact')"
   >
     + Contact
   </p>
+  <p
+    *ngIf="contact == true"
+    style="font-size: 18px; font-weight: 400; margin-left: 50px; color: #034ea2"
+    (click)="toggle('contact')"
+  >
+    - Contact
+  </p>
 
   <div *ngIf="contact" fxLayout="column">
-    <div fxLayout="row" fxLayoutAlign="space-around center">
-      <div fxFlex="20" class="form-control" fxLayout="column">
-        <label for="text">Civilité</label>
-        <mat-form-field>
-          <mat-label>Select</mat-label>
-          <mat-select>
-            <mat-option value="one">M.</mat-option>
-            <mat-option value="two">Mme.</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-      <div fxFlex="35" class="form-control" fxLayout="column">
-        <label for="date">Nom</label>
-        <mat-form-field>
-          <mat-label>Tapez votre nom ici</mat-label>
-          <input matInput />
-        </mat-form-field>
-      </div>
-      <div fxFlex="35" class="form-control" fxLayout="column">
-        <label for="date">Prénom</label>
-        <mat-form-field>
-          <mat-label>Tapez votre Prénom ici</mat-label>
-          <input matInput />
-        </mat-form-field>
-      </div>
-    </div>
+    <mat-form-field
+      style="margin-right: 20px; margin-left: 20px"
+      class="example-full-width"
+    >
+      <mat-label>Email</mat-label>
+      <input
+        type="email"
+        matInput
+        [formControl]="emailFormControl"
+        placeholder="Ex. pat@example.com"
+      />
+      <mat-error
+        *ngIf="
+          emailFormControl.hasError('email') &&
+          !emailFormControl.hasError('required')
+        "
+      >
+        Please enter a valid email address
+      </mat-error>
+      <mat-error *ngIf="emailFormControl.hasError('required')">
+        Email is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
 
     <div
-      style="margin-right: 20px; margin-left: 20px"
+      style="
+        margin-bottom: 20px;
+        margin-right: 20px;
+        margin-left: 20px;
+        border-style: solid;
+        border-width: 0px;
+        border-bottom-width: 1px;
+      "
       class="form-control"
-      fxLayout="column"
+      fxLayout="row"
+      fxLayoutAlign="space-between center"
     >
-      <label for="date">Date de naissance</label>
-      <mat-form-field>
-        <mat-label>Choisissez une date</mat-label>
-        <input matInput [matDatepicker]="picker" />
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field>
+      <ngx-intl-tel-input
+        [preferredCountries]="[CountryISO.Tunisia, CountryISO.France]"
+        [enableAutoCountrySelect]="false"
+        [enablePlaceholder]="true"
+        [searchCountryFlag]="true"
+        [customPlaceholder]="'Téléphone'"
+        [searchCountryField]="[
+          SearchCountryField.Iso2,
+          SearchCountryField.Name
+        ]"
+        [selectFirstCountry]="false"
+        [selectedCountryISO]="CountryISO.France"
+        [phoneValidation]="true"
+        name="phone"
+      ></ngx-intl-tel-input>
+      <mat-icon matSuffix>phone</mat-icon>
     </div>
     <div
-      style="margin-right: 20px; margin-left: 20px"
+      style="
+        margin-bottom: 20px;
+        margin-right: 20px;
+        margin-left: 20px;
+        border-style: solid;
+        border-width: 0px;
+        border-bottom-width: 1px;
+      "
       class="form-control"
-      fxLayout="column"
+      fxLayout="row"
+      fxLayoutAlign="space-between center"
     >
-      <label for="date">Situation Familiale</label>
-      <mat-form-field>
-        <mat-label>Select</mat-label>
-        <mat-select>
-          <mat-option value="one">Mariés</mat-option>
-          <mat-option value="two">Divorcé(e)</mat-option>
-          <mat-option value="three">Veuf(ve)</mat-option>
-          <mat-option value="four">Célibataire</mat-option>
-        </mat-select>
-      </mat-form-field>
+      <ngx-intl-tel-input
+        [preferredCountries]="[CountryISO.Tunisia, CountryISO.France]"
+        [enableAutoCountrySelect]="false"
+        [enablePlaceholder]="true"
+        [searchCountryFlag]="true"
+        [customPlaceholder]="'2éme Téléphone'"
+        [searchCountryField]="[
+          SearchCountryField.Iso2,
+          SearchCountryField.Name
+        ]"
+        [selectFirstCountry]="false"
+        [selectedCountryISO]="CountryISO.France"
+        [phoneValidation]="true"
+        name="phone2"
+      ></ngx-intl-tel-input>
+      <mat-icon matSuffix>phone</mat-icon>
     </div>
     <div
-      style="margin-right: 20px; margin-left: 20px"
+      style="
+        margin-bottom: 20px;
+        margin-right: 20px;
+        margin-left: 20px;
+        border-style: solid;
+        border-width: 0px;
+        border-bottom-width: 1px;
+      "
       class="form-control"
-      fxLayout="column"
+      fxLayout="row"
+      fxLayoutAlign="space-between center"
     >
-      <mat-form-field>
-        <input matInput type="number" placeholder="Nombre d'Enfants" />
-      </mat-form-field>
+      <ngx-intl-tel-input
+        [preferredCountries]="[CountryISO.Tunisia, CountryISO.France]"
+        [enableAutoCountrySelect]="false"
+        [enablePlaceholder]="true"
+        [searchCountryFlag]="true"
+        [customPlaceholder]="'Mobile'"
+        [searchCountryField]="[
+          SearchCountryField.Iso2,
+          SearchCountryField.Name
+        ]"
+        [selectFirstCountry]="false"
+        [selectedCountryISO]="CountryISO.France"
+        [phoneValidation]="true"
+        name="phone2"
+      ></ngx-intl-tel-input>
+      <mat-icon matSuffix>phone</mat-icon>
     </div>
   </div>
   <p
+    *ngIf="adresse == false"
     style="font-size: 18px; font-weight: 400; margin-left: 50px; color: #034ea2"
     (click)="toggle('adresse')"
   >
     + Adresse
   </p>
+  <p
+    *ngIf="adresse == true"
+    style="font-size: 18px; font-weight: 400; margin-left: 50px; color: #034ea2"
+    (click)="toggle('adresse')"
+  >
+    - Adresse
+  </p>
 
   <div *ngIf="adresse" fxLayout="column">
-    <div fxLayout="row" fxLayoutAlign="space-around center">
-      <div fxFlex="20" class="form-control" fxLayout="column">
-        <label for="text">Civilité</label>
-        <mat-form-field>
-          <mat-label>Select</mat-label>
-          <mat-select>
-            <mat-option value="one">M.</mat-option>
-            <mat-option value="two">Mme.</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-      <div fxFlex="35" class="form-control" fxLayout="column">
-        <label for="date">Nom</label>
-        <mat-form-field>
-          <mat-label>Tapez votre nom ici</mat-label>
-          <input matInput />
-        </mat-form-field>
-      </div>
-      <div fxFlex="35" class="form-control" fxLayout="column">
-        <label for="date">Prénom</label>
-        <mat-form-field>
-          <mat-label>Tapez votre Prénom ici</mat-label>
-          <input matInput />
-        </mat-form-field>
+    <div
+      style="margin-right: 20px; margin-left: 20px"
+      class="form-control"
+      fxLayout="column"
+    >
+      <mat-form-field appearance="legacy">
+        <mat-label>Adresse</mat-label>
+        <input matInput />
+        <mat-icon style="opacity: 0.6" matSuffix>place</mat-icon>
+      </mat-form-field>
+      <div fxLayout="row" fxLayoutAlign="flex-start center">
+        
+        <div fxFlex="40" style="margin-right: 60;" class="form-control" fxLayout="column">
+          <mat-form-field>
+            <mat-label>Pays</mat-label>
+            <input matInput />
+          </mat-form-field>
+        </div>
+        <div fxFlex="40" class="form-control" fxLayout="column">
+          <mat-form-field>
+            <mat-label>Ville</mat-label>
+            <input matInput />
+          </mat-form-field>
+        </div>
+        <mat-select-country appearance="outline" 
+                    label="Country"
+                  >
+</mat-select-country>
       </div>
     </div>
 
@@ -218,14 +293,23 @@
     >
       <mat-form-field>
         <input matInput type="number" placeholder="Nombre d'Enfants" />
+        <mat-icon matSuffix>groups</mat-icon>
       </mat-form-field>
     </div>
   </div>
   <p
+    *ngIf="info == false"
     style="font-size: 18px; font-weight: 400; margin-left: 50px; color: #034ea2"
     (click)="toggle('info')"
   >
     + Informations complémentaires
+  </p>
+  <p
+    *ngIf="info == true"
+    style="font-size: 18px; font-weight: 400; margin-left: 50px; color: #034ea2"
+    (click)="toggle('info')"
+  >
+    - Informations complémentaires
   </p>
 
   <div *ngIf="info" fxLayout="column">
