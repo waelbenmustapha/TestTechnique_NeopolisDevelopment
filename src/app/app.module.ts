@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { RouterModule,Routes } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {Ng2TelInputModule} from 'ng2-tel-input';
 import { MatSelectCountryModule } from '@angular-material-extensions/select-country';
@@ -8,10 +9,6 @@ import {HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormComponent } from './form/form.component';
-import { IdentiteComponent } from './components/identite/identite.component';
-import { ContactComponent } from './components/contact/contact.component';
-import { AdresseComponent } from './components/adresse/adresse.component';
-import { InfoComponent } from './components/info/info.component';
 import { ButtonComponent } from './components/button/button.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonModule} from '@angular/material/button';
@@ -22,20 +19,28 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatIconModule} from '@angular/material/icon';
 import {NgxIntlTelInputModule} from 'ngx-intl-tel-input';
 import {MatNativeDateModule} from '@angular/material/core';
+import { HeaderComponent } from './components/header/header.component';
+import { RelationsComponent } from './components/relations/relations.component';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatSortModule} from '@angular/material/sort';
 
+const appRoutes:Routes=[
+  {path:'',component:FormComponent},
+  {path:'relations',component:RelationsComponent}
+]
 @NgModule({
   declarations: [
     AppComponent,
     FormComponent,
-    IdentiteComponent,
-    ContactComponent,
-    AdresseComponent,
-    InfoComponent,
-    ButtonComponent
+
+    ButtonComponent,
+     HeaderComponent,
+     RelationsComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule ,MatSelectCountryModule.forRoot('fr'),HttpClientModule,NgxIntlTelInputModule,Ng2TelInputModule,ReactiveFormsModule,MatIconModule,FormsModule,MatNativeDateModule,FlexLayoutModule,MatDatepickerModule, BrowserAnimationsModule,MatButtonModule,MatFormFieldModule,MatInputModule,MatSelectModule
+    AppRoutingModule,MatSortModule,MatPaginatorModule,MatTableModule,RouterModule.forRoot(appRoutes,{enableTracing:true}) ,MatSelectCountryModule.forRoot('fr'),HttpClientModule,NgxIntlTelInputModule,Ng2TelInputModule,ReactiveFormsModule,MatIconModule,FormsModule,MatNativeDateModule,FlexLayoutModule,MatDatepickerModule, BrowserAnimationsModule,MatButtonModule,MatFormFieldModule,MatInputModule,MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,41 +1,43 @@
-<form class="add-task" (ngSubmit)="addtask()">
+<form   class="formstyle" (ngSubmit)="add()">
   <p
-    *ngIf="identite == false"
+    *ngIf="showIdentite == false"
     style="font-size: 18px; font-weight: 400; margin-left: 50px; color: #034ea2"
     (click)="toggle('identite')"
   >
     + Identité
   </p>
   <p
-    *ngIf="identite == true"
+    *ngIf="showIdentite == true"
     style="font-size: 18px; font-weight: 400; margin-left: 50px; color: #034ea2"
     (click)="toggle('identite')"
   >
     - Identité
   </p>
 
-  <div *ngIf="identite" fxLayout="column">
+  <div *ngIf="showIdentite" fxLayout="column">
     <div fxLayout="row" fxLayoutAlign="space-around center">
       <div fxFlex="20" class="form-control" fxLayout="column">
         <mat-form-field>
           <mat-label>Civilité</mat-label>
-          <mat-select>
-            <mat-option value="one">M.</mat-option>
-            <mat-option value="two">Mme.</mat-option>
+          <mat-select [formControl]="civilitectrl"  [(ngModel)]="civilite" name="civilite">
+            <mat-option value="M">M.</mat-option>
+            <mat-option value="Mme">Mme.</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
       <div fxFlex="35" class="form-control" fxLayout="column">
         <mat-form-field appearance="legacy">
           <mat-label>Nom</mat-label>
-          <input matInput />
+          <input  matInput    [formControl]="nomctrl"
+          [(ngModel)]="nom" name="nom" />
           <mat-icon matSuffix>person</mat-icon>
+
         </mat-form-field>
       </div>
       <div fxFlex="35" class="form-control" fxLayout="column">
         <mat-form-field appearance="legacy">
           <mat-label>Prénom</mat-label>
-          <input matInput />
+          <input matInput [formControl]="prenomctrl" [(ngModel)]="prenom" name="prenom" />
           <mat-icon matSuffix>person</mat-icon>
         </mat-form-field>
       </div>
@@ -48,7 +50,13 @@
     >
       <mat-form-field appearance="legacy">
         <mat-label>Date de naissance</mat-label>
-        <input matInput [matDatepicker]="picker" />
+        <input
+        [formControl]="naissancectrl" 
+          matInput
+          [(ngModel)]="naissance"
+          name="naissance"
+          [matDatepicker]="picker"
+        />
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
@@ -60,11 +68,12 @@
     >
       <mat-form-field appearance="legacy">
         <mat-label>Situation Familiale</mat-label>
-        <mat-select>
-          <mat-option value="one">Mariés</mat-option>
-          <mat-option value="two">Divorcé(e)</mat-option>
-          <mat-option value="three">Veuf(ve)</mat-option>
-          <mat-option value="four">Célibataire</mat-option>
+        <mat-select         [formControl]="situationfamilialectrl" 
+        [(ngModel)]="situationFamiliale" name="situationFamiliale">
+          <mat-option value="Maries">Mariés</mat-option>
+          <mat-option value="Divorce">Divorcé(e)</mat-option>
+          <mat-option value="Veuf">Veuf(ve)</mat-option>
+          <mat-option value="Celibataire">Célibataire</mat-option>
         </mat-select>
       </mat-form-field>
     </div>
@@ -74,27 +83,34 @@
       fxLayout="column"
     >
       <mat-form-field>
-        <input matInput type="number" placeholder="Nombre d'Enfants" />
+        <input
+        [formControl]="nbrenfantctrl" 
+          matInput
+          type="number"
+          [(ngModel)]="nmbrenfants"
+          name="nmbrenfants"
+          placeholder="Nombre d'Enfants"
+        />
         <mat-icon matSuffix>groups</mat-icon>
       </mat-form-field>
     </div>
   </div>
   <p
-    *ngIf="contact == false"
+    *ngIf="showContact == false"
     style="font-size: 18px; font-weight: 400; margin-left: 50px; color: #034ea2"
     (click)="toggle('contact')"
   >
     + Contact
   </p>
   <p
-    *ngIf="contact == true"
+    *ngIf="showContact == true"
     style="font-size: 18px; font-weight: 400; margin-left: 50px; color: #034ea2"
     (click)="toggle('contact')"
   >
     - Contact
   </p>
 
-  <div *ngIf="contact" fxLayout="column">
+  <div *ngIf="showContact" fxLayout="column">
     <mat-form-field
       style="margin-right: 20px; margin-left: 20px"
       class="example-full-width"
@@ -103,6 +119,8 @@
       <input
         type="email"
         matInput
+        [(ngModel)]="email"
+        name="email"
         [formControl]="emailFormControl"
         placeholder="Ex. pat@example.com"
       />
@@ -123,10 +141,12 @@
       style="
         margin-bottom: 20px;
         margin-right: 20px;
+        border-color: #928e8e;
+
         margin-left: 20px;
         border-style: solid;
         border-width: 0px;
-        border-bottom-width: 1px;
+        border-bottom-width: 1.5px;
       "
       class="form-control"
       fxLayout="row"
@@ -137,6 +157,8 @@
         [enableAutoCountrySelect]="false"
         [enablePlaceholder]="true"
         [searchCountryFlag]="true"
+        [(ngModel)]="phone1"
+        name="phone1"
         [customPlaceholder]="'Téléphone'"
         [searchCountryField]="[
           SearchCountryField.Iso2,
@@ -156,6 +178,8 @@
         margin-left: 20px;
         border-style: solid;
         border-width: 0px;
+        border-color: #928e8e;
+
         border-bottom-width: 1px;
       "
       class="form-control"
@@ -166,6 +190,8 @@
         [preferredCountries]="[CountryISO.Tunisia, CountryISO.France]"
         [enableAutoCountrySelect]="false"
         [enablePlaceholder]="true"
+        [(ngModel)]="phone2"
+        name="phone2"
         [searchCountryFlag]="true"
         [customPlaceholder]="'2éme Téléphone'"
         [searchCountryField]="[
@@ -186,6 +212,8 @@
         margin-left: 20px;
         border-style: solid;
         border-width: 0px;
+        border-color: #928e8e;
+
         border-bottom-width: 1px;
       "
       class="form-control"
@@ -197,6 +225,8 @@
         [enableAutoCountrySelect]="false"
         [enablePlaceholder]="true"
         [searchCountryFlag]="true"
+        [(ngModel)]="mobile"
+        name="mobile"
         [customPlaceholder]="'Mobile'"
         [searchCountryField]="[
           SearchCountryField.Iso2,
@@ -211,21 +241,21 @@
     </div>
   </div>
   <p
-    *ngIf="adresse == false"
+    *ngIf="showAdresse == false"
     style="font-size: 18px; font-weight: 400; margin-left: 50px; color: #034ea2"
     (click)="toggle('adresse')"
   >
     + Adresse
   </p>
   <p
-    *ngIf="adresse == true"
+    *ngIf="showAdresse == true"
     style="font-size: 18px; font-weight: 400; margin-left: 50px; color: #034ea2"
     (click)="toggle('adresse')"
   >
     - Adresse
   </p>
 
-  <div *ngIf="adresse" fxLayout="column">
+  <div *ngIf="showAdresse" fxLayout="column">
     <div
       style="margin-right: 20px; margin-left: 20px"
       class="form-control"
@@ -233,27 +263,35 @@
     >
       <mat-form-field appearance="legacy">
         <mat-label>Adresse</mat-label>
-        <input matInput />
+        <input matInput [formControl]="adressectrl"
+         [(ngModel)]="adresse" name="adresse" />
         <mat-icon style="opacity: 0.6" matSuffix>place</mat-icon>
       </mat-form-field>
       <div fxLayout="row" fxLayoutAlign="flex-start center">
-        
-        <div fxFlex="40" style="margin-right: 60;" class="form-control" fxLayout="column">
-          <mat-form-field>
-            <mat-label>Pays</mat-label>
-            <input matInput />
-          </mat-form-field>
+        <div>
+          <mat-select-country
+            [(ngModel)]="pays"
+            name="pays"
+            [formControl]="paysctrl"
+            [value]="defaultValue"
+            style="margin-right: 100"
+            appearance="legacy"
+            label="Pays"
+          >
+          </mat-select-country>
         </div>
-        <div fxFlex="40" class="form-control" fxLayout="column">
+
+        <div
+          fxFlex="50"
+          style="margin-right: 60"
+          class="form-control"
+          fxLayout="column"
+        >
           <mat-form-field>
             <mat-label>Ville</mat-label>
-            <input matInput />
+            <input matInput     [formControl]="villectrl" [(ngModel)]="ville" name="ville" />
           </mat-form-field>
         </div>
-        <mat-select-country appearance="outline" 
-                    label="Country"
-                  >
-</mat-select-country>
       </div>
     </div>
 
@@ -262,82 +300,73 @@
       class="form-control"
       fxLayout="column"
     >
-      <label for="date">Date de naissance</label>
-      <mat-form-field>
-        <mat-label>Choisissez une date</mat-label>
-        <input matInput [matDatepicker]="picker" />
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field>
+      <div fxLayout="row" fxLayoutAlign="flex-start center">
+        <div fxFlex="20" class="horizSpacing" fxLayout="column">
+          <mat-form-field>
+            <mat-label>Rue</mat-label>
+            <input matInput    [formControl]="ruectrl"       [(ngModel)]="rue" name="rue" 
+            placeholder="Ex. San Francisco" />
+          </mat-form-field>
+        </div>
+        <div fxFlex="20" class="horizSpacing" fxLayout="column">
+          <mat-form-field class="example-full-width" appearance="legacy">
+            <mat-label>N° de Rue</mat-label>
+            <input matInput [(ngModel)]="numRue" [formControl]="numruectrl" name="numRue"  type="number" placeholder="Ex. 24" />
+          </mat-form-field>
+        </div>
+        <div fxFlex="20" class="horizSpacing" fxLayout="column">
+          <mat-form-field class="example-full-width" appearance="legacy">
+            <mat-label>Postal Code</mat-label>
+            <input
+              matInput
+              [(ngModel)]="codePostal" name="codePostal" 
+              type="number"
+              [formControl]="codepostalctrl"
+              maxlength="5"
+              placeholder="Ex. 94105"
+              value="92500"
+            />
+          </mat-form-field>
+        </div>
+      </div>
     </div>
+
     <div
       style="margin-right: 20px; margin-left: 20px"
       class="form-control"
       fxLayout="column"
     >
-      <label for="date">Situation Familiale</label>
       <mat-form-field>
-        <mat-label>Select</mat-label>
-        <mat-select>
-          <mat-option value="one">Mariés</mat-option>
-          <mat-option value="two">Divorcé(e)</mat-option>
-          <mat-option value="three">Veuf(ve)</mat-option>
-          <mat-option value="four">Célibataire</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-    <div
-      style="margin-right: 20px; margin-left: 20px"
-      class="form-control"
-      fxLayout="column"
-    >
-      <mat-form-field>
-        <input matInput type="number" placeholder="Nombre d'Enfants" />
-        <mat-icon matSuffix>groups</mat-icon>
+        <input matInput       [formControl]="complementadressectrl"        [(ngModel)]="complementadresse" name="complementadresse" 
+        placeholder="Complément d'Adresse" />
       </mat-form-field>
     </div>
   </div>
   <p
-    *ngIf="info == false"
+    *ngIf="showInfo == false"
     style="font-size: 18px; font-weight: 400; margin-left: 50px; color: #034ea2"
     (click)="toggle('info')"
   >
     + Informations complémentaires
   </p>
   <p
-    *ngIf="info == true"
+    *ngIf="showInfo == true"
     style="font-size: 18px; font-weight: 400; margin-left: 50px; color: #034ea2"
     (click)="toggle('info')"
   >
     - Informations complémentaires
   </p>
 
-  <div *ngIf="info" fxLayout="column">
-    <div fxLayout="row" fxLayoutAlign="space-around center">
-      <div fxFlex="20" class="form-control" fxLayout="column">
-        <label for="text">Civilité</label>
-        <mat-form-field>
-          <mat-label>Select</mat-label>
-          <mat-select>
-            <mat-option value="one">M.</mat-option>
-            <mat-option value="two">Mme.</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-      <div fxFlex="35" class="form-control" fxLayout="column">
-        <label for="date">Nom</label>
-        <mat-form-field>
-          <mat-label>Tapez votre nom ici</mat-label>
-          <input matInput />
-        </mat-form-field>
-      </div>
-      <div fxFlex="35" class="form-control" fxLayout="column">
-        <label for="date">Prénom</label>
-        <mat-form-field>
-          <mat-label>Tapez votre Prénom ici</mat-label>
-          <input matInput />
-        </mat-form-field>
-      </div>
+  <div *ngIf="showInfo" fxLayout="column">
+    <div
+      style="margin-right: 20px; margin-left: 20px"
+      class="form-control"
+      fxLayout="column"
+    >
+      <mat-form-field>
+        <input matInput         [formControl]="motclesctrl"        [(ngModel)]="motCles" name="motCles" 
+        placeholder="Mot-Clés" />
+      </mat-form-field>
     </div>
 
     <div
@@ -345,39 +374,19 @@
       class="form-control"
       fxLayout="column"
     >
-      <label for="date">Date de naissance</label>
       <mat-form-field>
-        <mat-label>Choisissez une date</mat-label>
-        <input matInput [matDatepicker]="picker" />
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field>
-    </div>
-    <div
-      style="margin-right: 20px; margin-left: 20px"
-      class="form-control"
-      fxLayout="column"
-    >
-      <label for="date">Situation Familiale</label>
-      <mat-form-field>
-        <mat-label>Select</mat-label>
-        <mat-select>
-          <mat-option value="one">Mariés</mat-option>
-          <mat-option value="two">Divorcé(e)</mat-option>
-          <mat-option value="three">Veuf(ve)</mat-option>
-          <mat-option value="four">Célibataire</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-    <div
-      style="margin-right: 20px; margin-left: 20px"
-      class="form-control"
-      fxLayout="column"
-    >
-      <mat-form-field>
-        <input matInput type="number" placeholder="Nombre d'Enfants" />
+        <mat-label>Commentaire sur le prospect</mat-label>
+
+        <textarea matInput [formControl]="commentairectrl"   [(ngModel)]="commentaire" name="commentaire" ></textarea>
       </mat-form-field>
     </div>
   </div>
-  <input type="submit" value="Add Task" class="btn btn-block" />
+  <div *ngIf="formerror==true" class="alert">
+    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+    <strong> ERREUR! </strong>Veuillez vérifier tous les champs.
+  </div>
+  <div  fxLayoutAlign="center center" style="margin-top: 50px;margin-bottom: 20px;">
+    <button class="btncenter" mat-flat-button color="primary">Primary</button>
+
+</div>
 </form>

@@ -1,48 +1,155 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, Validators} from '@angular/forms';
-import { SearchCountryField, CountryISO, PhoneNumberFormat } from 'ngx-intl-tel-input';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Country } from '@angular-material-extensions/select-country';
+
+import {
+  SearchCountryField,
+  CountryISO,
+  PhoneNumberFormat,
+} from 'ngx-intl-tel-input';
+import { Person } from 'src/Person';
+import { PersonService } from '../services/person.service';
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
-  styleUrls: ['./form.component.css']
+  styleUrls: ['./form.component.css'],
 })
 export class FormComponent implements OnInit {
+  defaultValue: Country = {
+    name: 'France',
+    alpha2Code: 'FR',
+    alpha3Code: 'FRA',
+    numericCode: '250',
+    callingCode: '+33',
+  };
+
   emailFormControl = new FormControl('', [
     Validators.required,
     Validators.email,
   ]);
-  text:string;
-  date:string;
-  SearchCountryField = SearchCountryField;
-	CountryISO = CountryISO;
-  customPlaceholder="hi"
-  PhoneNumberFormat = PhoneNumberFormat;
-	preferredCountries: CountryISO[] = [CountryISO.UnitedStates, CountryISO.UnitedKingdom];
-identite:boolean=true;
-contact:boolean=true;
-adresse:boolean=true;
-basicDatepicker:any;
-info:boolean=true;
-  constructor() { }
+  formerror: boolean = false;
+  nomctrl = new FormControl('', [Validators.required]);
+  prenomctrl = new FormControl('', [Validators.required]);
+  civilitectrl = new FormControl('', [Validators.required]);
+  naissancectrl = new FormControl('', [Validators.required]);
+  situationfamilialectrl = new FormControl('', [Validators.required]);
+  nbrenfantctrl = new FormControl('', [Validators.required]);
+  phone1ctrl = new FormControl('', [Validators.required]);
+  phone2ctrl = new FormControl('', [Validators.required]);
+  mobilectrl = new FormControl('', [Validators.required]);
+  adressectrl = new FormControl('', [Validators.required]);
+  paysctrl = new FormControl('', [Validators.required]);
+  villectrl = new FormControl('', [Validators.required]);
+  ruectrl = new FormControl('', [Validators.required]);
+  numruectrl = new FormControl('', [Validators.required]);
+  codepostalctrl = new FormControl('', [Validators.required]);
+  complementadressectrl = new FormControl('', [Validators.required]);
+  motclesctrl = new FormControl('', [Validators.required]);
+  commentairectrl = new FormControl('', [Validators.required]);
 
-  ngOnInit(): void {
+  civilite: string;
+  nom: string;
+  prenom: string;
+  naissance: Date;
+  situationFamiliale: string;
+  nmbrenfants: number;
+  email: string;
+  phone1: any;
+  phone2:any;
+  mobile: any;
+  adresse: string;
+  pays: any;
+  ville: string;
+  rue: string;
+  numRue: string;
+  codePostal: number = 92500;
+  complementadresse: string;
+  motCles: string;
+  commentaire: string;
+  SearchCountryField = SearchCountryField;
+  CountryISO = CountryISO;
+  customPlaceholder = 'hi';
+  PhoneNumberFormat = PhoneNumberFormat;
+  preferredCountries: CountryISO[] = [
+    CountryISO.UnitedStates,
+    CountryISO.UnitedKingdom,
+  ];
+  showIdentite: boolean = true;
+  showContact: boolean = true;
+  showAdresse: boolean = true;
+  basicDatepicker: any;
+  showInfo: boolean = true;
+  constructor(private personserv: PersonService) {}
+
+  ngOnInit(): void {}
+
+  add() {
+    if (
+      this.nom != null &&
+      this.prenom != null &&
+      this.civilite != null &&
+      this.naissance != null &&
+      this.situationFamiliale != null &&
+      this.nmbrenfants != null &&
+      this.email != null &&
+      (this.phone1 != null || this.phone2 != null || this.mobile != null) &&
+      this.adresse != null &&
+      this.pays != null &&
+      this.ville != null &&
+      this.rue != null &&
+      this.numRue != null &&
+      this.codepostalctrl != null &&
+      this.complementadresse != null &&
+      this.motCles != null &&
+      this.commentaire != null
+    ) {
+      if(this.phone1==null)
+      {this.phone1={internationalNumber:''}}
+      if(this.phone2==null)
+      {this.phone2={internationalNumber:''}}
+      if(this.mobile==null)
+      {this.mobile={internationalNumber:''}}
+      const newPerson = {
+        nom: this.nom,
+        prenom: this.prenom,
+        civilite: this.civilite,
+        naissance: this.naissance,
+        situationFamiliale: this.situationFamiliale,
+        nmbrenfants: this.nmbrenfants,
+        email: this.email,
+        phone1: this.phone1.internationalNumber,
+        phone2: this.phone2.internationalNumber,
+        mobile: this.mobile.internationalNumber,
+        adresse: this.adresse,
+        pays: this.pays.name,
+        ville: this.ville,
+        rue: this.rue,
+        numRue: this.numRue,
+        codePostal: this.codePostal,
+        complementadresse: this.complementadresse,
+        motCles: this.motCles,
+        commentaire: this.commentaire,
+      };
+      this.personserv
+        .add(newPerson)
+        .subscribe(() => console.log('add person done'));
+    } else {
+      this.formerror = true;
+    }
   }
-addtask(){
-  console.log(this.text+" "+this.date)
-}
-toggle(part:string){
-  console.log(part)
-  if(part=="identite"){
-    this.identite=!this.identite;
+  toggle(part: string) {
+    console.log(part);
+    if (part == 'identite') {
+      this.showIdentite = !this.showIdentite;
+    }
+    if (part == 'contact') {
+      this.showContact = !this.showContact;
+    }
+    if (part == 'adresse') {
+      this.showAdresse = !this.showAdresse;
+    }
+    if (part == 'info') {
+      this.showInfo = !this.showInfo;
+    }
   }
-  if(part=="contact"){
-    this.contact=!this.contact;
-  }
-  if(part=="adresse"){
-    this.adresse=!this.adresse;
-  }
-  if(part=="info"){
-    this.info=!this.info;
-  }
-}
 }
