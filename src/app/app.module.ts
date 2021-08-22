@@ -24,6 +24,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 
+// each path and the component related to it
 const appRoutes: Routes = [
   { path: '', component: FormComponent },
   { path: 'relations', component: RelationsComponent },

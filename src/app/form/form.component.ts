@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Country } from '@angular-material-extensions/select-country';
-
 import {
   SearchCountryField,
   CountryISO,
   PhoneNumberFormat,
 } from 'ngx-intl-tel-input';
-import { Person } from 'src/Person';
 import { PersonService } from '../services/person.service';
 @Component({
   selector: 'app-form',
@@ -15,6 +13,7 @@ import { PersonService } from '../services/person.service';
   styleUrls: ['./form.component.css'],
 })
 export class FormComponent implements OnInit {
+  //default country to set for pays field
   defaultValue: Country = {
     name: 'France',
     alpha2Code: 'FR',
@@ -22,12 +21,16 @@ export class FormComponent implements OnInit {
     numericCode: '250',
     callingCode: '+33',
   };
+  //formerror variable set to true if any form data is empty
+  formerror: boolean = false;
 
+  //form control pour le champ email
   emailFormControl = new FormControl('', [
     Validators.required,
     Validators.email,
   ]);
-  formerror: boolean = false;
+
+  //start of all form controls and validation-->
   nomctrl = new FormControl('', [Validators.required]);
   prenomctrl = new FormControl('', [Validators.required]);
   civilitectrl = new FormControl('', [Validators.required]);
@@ -46,7 +49,9 @@ export class FormComponent implements OnInit {
   complementadressectrl = new FormControl('', [Validators.required]);
   motclesctrl = new FormControl('', [Validators.required]);
   commentairectrl = new FormControl('', [Validators.required]);
+  //end of all form controls <--
 
+  //start of form variables -->
   civilite: string;
   nom: string;
   prenom: string;
@@ -55,7 +60,7 @@ export class FormComponent implements OnInit {
   nmbrenfants: number;
   email: string;
   phone1: any;
-  phone2:any;
+  phone2: any;
   mobile: any;
   adresse: string;
   pays: any;
@@ -66,6 +71,9 @@ export class FormComponent implements OnInit {
   complementadresse: string;
   motCles: string;
   commentaire: string;
+  //end of form variables <--
+
+  //data for mobile number selector
   SearchCountryField = SearchCountryField;
   CountryISO = CountryISO;
   customPlaceholder = 'hi';
@@ -74,16 +82,22 @@ export class FormComponent implements OnInit {
     CountryISO.UnitedStates,
     CountryISO.UnitedKingdom,
   ];
+
+  //on click expand or collapse divs depending on this variables
   showIdentite: boolean = true;
   showContact: boolean = true;
   showAdresse: boolean = true;
-  basicDatepicker: any;
   showInfo: boolean = true;
+
+  
   constructor(private personserv: PersonService) {}
 
+  
   ngOnInit(): void {}
 
+  //function to add person
   add() {
+    //check if all form data are not null and at least one phone number is provided
     if (
       this.nom != null &&
       this.prenom != null &&
@@ -103,12 +117,16 @@ export class FormComponent implements OnInit {
       this.motCles != null &&
       this.commentaire != null
     ) {
-      if(this.phone1==null)
-      {this.phone1={internationalNumber:''}}
-      if(this.phone2==null)
-      {this.phone2={internationalNumber:''}}
-      if(this.mobile==null)
-      {this.mobile={internationalNumber:''}}
+      if (this.phone1 == null) {
+        this.phone1 = { internationalNumber: '' };
+      }
+      if (this.phone2 == null) {
+        this.phone2 = { internationalNumber: '' };
+      }
+      if (this.mobile == null) {
+        this.mobile = { internationalNumber: '' };
+      }
+      // create new variable of type Person
       const newPerson = {
         nom: this.nom,
         prenom: this.prenom,
@@ -130,13 +148,18 @@ export class FormComponent implements OnInit {
         motCles: this.motCles,
         commentaire: this.commentaire,
       };
+      
+      //call the service to add newPerson to the database
       this.personserv
         .add(newPerson)
         .subscribe(() => console.log('add person done'));
     } else {
+      // in case of an error in the form data forerror = true to throw an error 
       this.formerror = true;
     }
   }
+
+  //toggle function to change variables to show or hide div sections of the form 
   toggle(part: string) {
     console.log(part);
     if (part == 'identite') {

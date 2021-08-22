@@ -1,4 +1,8 @@
-<form   class="formstyle" (ngSubmit)="add()">
+<!-- Add Person Form -->
+
+<form class="formstyle" (ngSubmit)="add()">
+        <!-- on click expand or collapse form div depending on identite variable -->
+
   <p
     *ngIf="showIdentite == false"
     style="font-size: 18px; font-weight: 400; margin-left: 50px; color: #034ea2"
@@ -19,7 +23,11 @@
       <div fxFlex="20" class="form-control" fxLayout="column">
         <mat-form-field>
           <mat-label>Civilité</mat-label>
-          <mat-select [formControl]="civilitectrl"  [(ngModel)]="civilite" name="civilite">
+          <mat-select
+            [formControl]="civilitectrl"
+            [(ngModel)]="civilite"
+            name="civilite"
+          >
             <mat-option value="M">M.</mat-option>
             <mat-option value="Mme">Mme.</mat-option>
           </mat-select>
@@ -28,16 +36,24 @@
       <div fxFlex="35" class="form-control" fxLayout="column">
         <mat-form-field appearance="legacy">
           <mat-label>Nom</mat-label>
-          <input  matInput    [formControl]="nomctrl"
-          [(ngModel)]="nom" name="nom" />
+          <input
+            matInput
+            [formControl]="nomctrl"
+            [(ngModel)]="nom"
+            name="nom"
+          />
           <mat-icon matSuffix>person</mat-icon>
-
         </mat-form-field>
       </div>
       <div fxFlex="35" class="form-control" fxLayout="column">
         <mat-form-field appearance="legacy">
           <mat-label>Prénom</mat-label>
-          <input matInput [formControl]="prenomctrl" [(ngModel)]="prenom" name="prenom" />
+          <input
+            matInput
+            [formControl]="prenomctrl"
+            [(ngModel)]="prenom"
+            name="prenom"
+          />
           <mat-icon matSuffix>person</mat-icon>
         </mat-form-field>
       </div>
@@ -51,7 +67,7 @@
       <mat-form-field appearance="legacy">
         <mat-label>Date de naissance</mat-label>
         <input
-        [formControl]="naissancectrl" 
+          [formControl]="naissancectrl"
           matInput
           [(ngModel)]="naissance"
           name="naissance"
@@ -68,8 +84,11 @@
     >
       <mat-form-field appearance="legacy">
         <mat-label>Situation Familiale</mat-label>
-        <mat-select         [formControl]="situationfamilialectrl" 
-        [(ngModel)]="situationFamiliale" name="situationFamiliale">
+        <mat-select
+          [formControl]="situationfamilialectrl"
+          [(ngModel)]="situationFamiliale"
+          name="situationFamiliale"
+        >
           <mat-option value="Maries">Mariés</mat-option>
           <mat-option value="Divorce">Divorcé(e)</mat-option>
           <mat-option value="Veuf">Veuf(ve)</mat-option>
@@ -84,7 +103,7 @@
     >
       <mat-form-field>
         <input
-        [formControl]="nbrenfantctrl" 
+          [formControl]="nbrenfantctrl"
           matInput
           type="number"
           [(ngModel)]="nmbrenfants"
@@ -95,6 +114,8 @@
       </mat-form-field>
     </div>
   </div>
+          <!-- on click expand or collapse form div depending on contact variable -->
+
   <p
     *ngIf="showContact == false"
     style="font-size: 18px; font-weight: 400; margin-left: 50px; color: #034ea2"
@@ -240,6 +261,8 @@
       <mat-icon matSuffix>phone</mat-icon>
     </div>
   </div>
+          <!-- on click expand or collapse form div depending on Adresse variable -->
+
   <p
     *ngIf="showAdresse == false"
     style="font-size: 18px; font-weight: 400; margin-left: 50px; color: #034ea2"
@@ -263,8 +286,12 @@
     >
       <mat-form-field appearance="legacy">
         <mat-label>Adresse</mat-label>
-        <input matInput [formControl]="adressectrl"
-         [(ngModel)]="adresse" name="adresse" />
+        <input
+          matInput
+          [formControl]="adressectrl"
+          [(ngModel)]="adresse"
+          name="adresse"
+        />
         <mat-icon style="opacity: 0.6" matSuffix>place</mat-icon>
       </mat-form-field>
       <div fxLayout="row" fxLayoutAlign="flex-start center">
@@ -289,7 +316,12 @@
         >
           <mat-form-field>
             <mat-label>Ville</mat-label>
-            <input matInput     [formControl]="villectrl" [(ngModel)]="ville" name="ville" />
+            <input
+              matInput
+              [formControl]="villectrl"
+              [(ngModel)]="ville"
+              name="ville"
+            />
           </mat-form-field>
         </div>
       </div>
@@ -304,14 +336,26 @@
         <div fxFlex="20" class="horizSpacing" fxLayout="column">
           <mat-form-field>
             <mat-label>Rue</mat-label>
-            <input matInput    [formControl]="ruectrl"       [(ngModel)]="rue" name="rue" 
-            placeholder="Ex. San Francisco" />
+            <input
+              matInput
+              [formControl]="ruectrl"
+              [(ngModel)]="rue"
+              name="rue"
+              placeholder="Ex. San Francisco"
+            />
           </mat-form-field>
         </div>
         <div fxFlex="20" class="horizSpacing" fxLayout="column">
           <mat-form-field class="example-full-width" appearance="legacy">
             <mat-label>N° de Rue</mat-label>
-            <input matInput [(ngModel)]="numRue" [formControl]="numruectrl" name="numRue"  type="number" placeholder="Ex. 24" />
+            <input
+              matInput
+              [(ngModel)]="numRue"
+              [formControl]="numruectrl"
+              name="numRue"
+              type="number"
+              placeholder="Ex. 24"
+            />
           </mat-form-field>
         </div>
         <div fxFlex="20" class="horizSpacing" fxLayout="column">
@@ -319,7 +363,8 @@
             <mat-label>Postal Code</mat-label>
             <input
               matInput
-              [(ngModel)]="codePostal" name="codePostal" 
+              [(ngModel)]="codePostal"
+              name="codePostal"
               type="number"
               [formControl]="codepostalctrl"
               maxlength="5"
@@ -337,11 +382,18 @@
       fxLayout="column"
     >
       <mat-form-field>
-        <input matInput       [formControl]="complementadressectrl"        [(ngModel)]="complementadresse" name="complementadresse" 
-        placeholder="Complément d'Adresse" />
+        <input
+          matInput
+          [formControl]="complementadressectrl"
+          [(ngModel)]="complementadresse"
+          name="complementadresse"
+          placeholder="Complément d'Adresse"
+        />
       </mat-form-field>
     </div>
   </div>
+            <!-- on click expand or collapse form div depending on info variable -->
+
   <p
     *ngIf="showInfo == false"
     style="font-size: 18px; font-weight: 400; margin-left: 50px; color: #034ea2"
@@ -364,8 +416,13 @@
       fxLayout="column"
     >
       <mat-form-field>
-        <input matInput         [formControl]="motclesctrl"        [(ngModel)]="motCles" name="motCles" 
-        placeholder="Mot-Clés" />
+        <input
+          matInput
+          [formControl]="motclesctrl"
+          [(ngModel)]="motCles"
+          name="motCles"
+          placeholder="Mot-Clés"
+        />
       </mat-form-field>
     </div>
 
@@ -377,16 +434,28 @@
       <mat-form-field>
         <mat-label>Commentaire sur le prospect</mat-label>
 
-        <textarea matInput [formControl]="commentairectrl"   [(ngModel)]="commentaire" name="commentaire" ></textarea>
+        <textarea
+          matInput
+          [formControl]="commentairectrl"
+          [(ngModel)]="commentaire"
+          name="commentaire"
+        ></textarea>
       </mat-form-field>
     </div>
   </div>
-  <div *ngIf="formerror==true" class="alert">
-    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+            <!-- show error if formerror var is true  -->
+
+  <div *ngIf="formerror == true" class="alert">
+    <span class="closebtn" onclick="this.parentElement.style.display='none';"
+      >&times;</span
+    >
+    
     <strong> ERREUR! </strong>Veuillez vérifier tous les champs.
   </div>
-  <div  fxLayoutAlign="center center" style="margin-top: 50px;margin-bottom: 20px;">
+  <div
+    fxLayoutAlign="center center"
+    style="margin-top: 50px; margin-bottom: 20px"
+  >
     <button class="btncenter" mat-flat-button color="primary">Primary</button>
-
-</div>
+  </div>
 </form>
