@@ -6,7 +6,6 @@ import { PersonService } from 'src/app/services/person.service';
 import { Person } from 'src/Person';
 
 
-
 @Component({
   selector: 'app-relations',
   templateUrl: './relations.component.html',
