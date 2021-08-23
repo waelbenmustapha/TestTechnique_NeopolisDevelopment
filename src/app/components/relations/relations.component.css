@@ -20,3 +20,10 @@ th {
   border-top: 1px solid transparent;
   cursor: pointer;
 }
+
+.centerdiv{
+  
+
+  width: 100%;
+  text-align: center;
+}

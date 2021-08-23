@@ -32,7 +32,7 @@ const appRoutes: Routes = [
   { path: '', component: FormComponent },
   { path: 'relations/:name/:id', component: RelationsComponent },
   {path:'peoples',component:PeoplesComponent},
-  {path:'addRelation',component:AddRelationComponent}
+  {path:'addRelation/:id',component:AddRelationComponent}
 ];
 @NgModule({
   declarations: [

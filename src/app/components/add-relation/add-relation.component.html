@@ -1,1 +1,48 @@
-<mat-card>Simple card</mat-card>
+<!-- Add Person Form -->
+
+<form class="formstyle" (ngSubmit)="addrelation()">
+    <!-- on click expand or collapse form div depending on identite variable -->
+
+
+<h4 style="text-align: center;">Ajouter une Relation </h4>
+<div fxLayout="column">
+<div fxLayout="row" fxLayoutAlign="space-around center">
+  <div fxFlex="40" class="form-control" fxLayout="column">
+    <mat-form-field>
+      <mat-label>peoples</mat-label>
+      <mat-select
+        [(ngModel)]="selectedperson"
+        name="peoples"
+      >
+      <mat-option *ngFor="let chosenPerson of peoples" [value]="chosenPerson.id" >
+        {{chosenPerson.nom}}
+      </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div fxFlex="40" class="form-control" fxLayout="column">
+    <mat-form-field appearance="legacy">
+      <mat-label>Relation</mat-label>
+      <input
+        matInput
+        [(ngModel)]="relation"
+        name="relation"
+      />
+      <mat-icon matSuffix>family_restroom</mat-icon>
+    </mat-form-field>
+  </div>
+  
+
+
+</div>
+</div>
+        <!-- show error if formerror var is true  -->
+
+
+<div
+fxLayoutAlign="center center"
+style="margin-top: 50px; margin-bottom: 20px"
+>
+<button class="btncenter" mat-flat-button color="primary">Ajouter</button>
+</div>
+</form>

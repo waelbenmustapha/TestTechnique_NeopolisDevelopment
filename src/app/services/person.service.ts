@@ -27,4 +27,9 @@ export class PersonService {
   getspecificperson(id:number):Observable<any[]>{
     return this.http.get<any[]>(`http://localhost:8090/relations/specefic/${id}`)
   }
+  addrelation(personid:number,relation:string,relative:number):Observable<any>
+  {
+    return this.http.post<any>(`http://localhost:8090/relations/add/${personid}/${relation}/${relative}`,{});
+
+  }
 }

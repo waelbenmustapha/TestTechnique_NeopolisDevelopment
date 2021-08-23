@@ -1,5 +1,4 @@
 
-<h2 style="text-align: center;margin-top: 35px;">{{displayname}}</h2>
 <!-- Table containing all the users in the database and their relation ? "relations still in progress". -->
 <div *ngIf="persons.length>0; else loggedOut">
 
@@ -42,9 +41,28 @@
       <tr class="mat-row" *matNoDataRow>
         <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
       </tr>
+      
     </table>
   
     <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="5" [length]="persons.length" aria-label="Select page of users"></mat-paginator>
-  </div></div>
+  </div>
+  <div class="centerdiv">
+  <a (click)="addrelation()" style="margin-top: 25px;" class="btn btn-primary">Ajouter relation</a>
+</div>
+
+</div>
   <ng-template #loggedOut>
-    l'utilisateur n'a pas encore des relations voulez-vous ajouter une nouvelle relation ?</ng-template>
+    <div style="margin-top: 35px">
+      <div class="card text-center">
+        <div class="card-header">
+          
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{displayname}}</h5>
+          <p class="card-text">cette utilisateur n'a pas encore des relations voulez-vous ajouter une nouvelle relation ?</p>
+          <a (click)="addrelation()" class="btn btn-primary">Ajouter relation</a>
+        </div>
+      
+      </div>
+    </div>
+    </ng-template>
