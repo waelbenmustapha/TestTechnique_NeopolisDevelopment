@@ -4,7 +4,8 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { PersonService } from 'src/app/services/person.service';
 import { ActivatedRoute } from '@angular/router';
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
+import { RelationService } from 'src/app/services/relation.service';
 
 @Component({
   selector: 'app-relations',
@@ -18,29 +19,31 @@ export class RelationsComponent implements OnInit {
   persons: any[] = [];
 
   //Columns to display on the table
-  displayedColumns: string[] = ['id',  'relation','relative.nom'];
+  displayedColumns: string[] = ['id', 'relation', 'relative.nom'];
   clickedRows = new Set<any>();
-displayname:string ;
+  displayname: string;
   //data source that the table will use
   dataSource: MatTableDataSource<any>;
-id:number;
+  id: number;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private personservice: PersonService,private route:ActivatedRoute,private router:Router) {
-  }
-  clickedme(prs:any){
-    console.log(prs)
-  }
+  constructor(
+    private personservice: PersonService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private relationservice:RelationService,
+  ) {}
+ 
   ngOnInit(): void {
     this.id = parseInt(this.route.snapshot.params.id);
-this.displayname=this.route.snapshot.params.name;
-console.log(this.displayname)
+    this.displayname = this.route.snapshot.params.name;
+    console.log(this.displayname);
     // fetch and assign the data to the datasource that the table will render
-    this.personservice.getspecificperson(this.id).subscribe((persons) => {
+    this.relationservice.getspecificperson(this.id).subscribe((persons) => {
       this.persons = persons;
       this.dataSource = new MatTableDataSource(this.persons);
-     //set the paginator and the sorting for the data
+      //set the paginator and the sorting for the data
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
@@ -55,8 +58,7 @@ console.log(this.displayname)
       this.dataSource.paginator.firstPage();
     }
   }
-  addrelation()
-{
-  this.router.navigate(['/addRelation',this.id])
-}
+  addrelation() {
+    this.router.navigate(['/addRelation', this.id]);
+  }
 }

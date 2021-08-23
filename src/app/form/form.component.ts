@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Country } from '@angular-material-extensions/select-country';
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
 
 import {
   SearchCountryField,
@@ -91,10 +91,8 @@ export class FormComponent implements OnInit {
   showAdresse: boolean = true;
   showInfo: boolean = true;
 
-  
-  constructor(private personserv: PersonService,private router:Router) {}
+  constructor(private personserv: PersonService, private router: Router) {}
 
-  
   ngOnInit(): void {}
 
   //function to add person
@@ -150,19 +148,19 @@ export class FormComponent implements OnInit {
         motCles: this.motCles,
         commentaire: this.commentaire,
       };
-      
+
       //call the service to add newPerson to the database
-      this.personserv
-        .add(newPerson)
-        .subscribe(() => {console.log('add person done');    this.router.navigate(['/peoples'])
+      this.personserv.add(newPerson).subscribe(() => {
+        console.log('add person done');
+        this.router.navigate(['/peoples']);
       });
     } else {
-      // in case of an error in the form data forerror = true to throw an error 
+      // in case of an error in the form data forerror = true to throw an error
       this.formerror = true;
     }
   }
 
-  //toggle function to change variables to show or hide div sections of the form 
+  //toggle function to change variables to show or hide div sections of the form
   toggle(part: string) {
     console.log(part);
     if (part == 'identite') {

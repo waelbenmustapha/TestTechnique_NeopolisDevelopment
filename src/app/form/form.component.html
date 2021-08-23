@@ -1,7 +1,7 @@
 <!-- Add Person Form -->
 
 <form class="formstyle" (ngSubmit)="add()">
-        <!-- on click expand or collapse form div depending on identite variable -->
+  <!-- on click expand or collapse form div depending on identite variable -->
 
   <p
     *ngIf="showIdentite == false"
@@ -114,7 +114,7 @@
       </mat-form-field>
     </div>
   </div>
-          <!-- on click expand or collapse form div depending on contact variable -->
+  <!-- on click expand or collapse form div depending on contact variable -->
 
   <p
     *ngIf="showContact == false"
@@ -173,6 +173,8 @@
       fxLayout="row"
       fxLayoutAlign="space-between center"
     >
+      <!-- Phone nmber with country code  -->
+
       <ngx-intl-tel-input
         [preferredCountries]="[CountryISO.Tunisia, CountryISO.France]"
         [enableAutoCountrySelect]="false"
@@ -261,7 +263,7 @@
       <mat-icon matSuffix>phone</mat-icon>
     </div>
   </div>
-          <!-- on click expand or collapse form div depending on Adresse variable -->
+  <!-- on click expand or collapse form div depending on Adresse variable -->
 
   <p
     *ngIf="showAdresse == false"
@@ -392,7 +394,7 @@
       </mat-form-field>
     </div>
   </div>
-            <!-- on click expand or collapse form div depending on info variable -->
+  <!-- on click expand or collapse form div depending on info variable -->
 
   <p
     *ngIf="showInfo == false"
@@ -443,19 +445,19 @@
       </mat-form-field>
     </div>
   </div>
-            <!-- show error if formerror var is true  -->
+  <!-- show error if formerror var is true  -->
 
   <div *ngIf="formerror == true" class="alert">
     <span class="closebtn" onclick="this.parentElement.style.display='none';"
       >&times;</span
     >
-    
+
     <strong> ERREUR! </strong>Veuillez vérifier tous les champs.
   </div>
   <div
     fxLayoutAlign="center center"
     style="margin-top: 50px; margin-bottom: 20px"
   >
-    <button class="btncenter" mat-flat-button color="primary">Primary</button>
+    <button class="btncenter" mat-flat-button color="primary">Submit</button>
   </div>
 </form>

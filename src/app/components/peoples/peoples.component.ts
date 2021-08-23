@@ -3,7 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { PersonService } from 'src/app/services/person.service';
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-peoples',
   templateUrl: './peoples.component.html',
@@ -16,7 +16,7 @@ export class PeoplesComponent implements OnInit {
   persons: any[] = [];
 
   //Columns to display on the table
-  displayedColumns: string[] = ['id','nom','prenom','email','pays'];
+  displayedColumns: string[] = ['id', 'nom', 'prenom', 'email', 'pays'];
 
   //data source that the table will use
   dataSource: MatTableDataSource<any>;
@@ -24,19 +24,15 @@ export class PeoplesComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private personservice: PersonService,private router:Router) {
-  }
-  clickedme(prs:any){
-    console.log(prs)
-  }
+  constructor(private personservice: PersonService, private router: Router) {}
+
   ngOnInit(): void {
     // fetch and assign the data to the datasource that the table will render
-
     this.personservice.getpersons().subscribe((persons) => {
-      console.log(persons)
+      console.log(persons);
       this.persons = persons;
       this.dataSource = new MatTableDataSource(this.persons);
-     //set the paginator and the sorting for the data
+      //set the paginator and the sorting for the data
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
@@ -51,8 +47,8 @@ export class PeoplesComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
-  clicked(row:any){
-    this.router.navigate(['/relations',row.nom,row.id,])
-  }
 
+  checkrUserRelations(row: any) {
+    this.router.navigate(['/relations', row.nom, row.id]);
+  }
 }

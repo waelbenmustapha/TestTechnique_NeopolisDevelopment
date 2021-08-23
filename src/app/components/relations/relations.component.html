@@ -1,68 +1,78 @@
+<!-- Table containing all the users in the database and their relation ? -->
 
-<!-- Table containing all the users in the database and their relation ? "relations still in progress". -->
-<div *ngIf="persons.length>0; else loggedOut">
+<!-- Show table if the table is not empty. -->
+<div *ngIf="persons.length > 0; else loggedOut">
+  <h2 style="margin-top: 35px; text-align: center">
+    {{ persons[0].personne.nom }}
+  </h2>
 
-<h2 style="margin-top:35px;text-align:center  ">{{persons[0].personne.nom}}</h2>
-
-      <mat-form-field appearance="standard">
-        
+  <mat-form-field appearance="standard">
     <mat-label>Filter</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+    <input
+      matInput
+      (keyup)="applyFilter($event)"
+      placeholder="Ex. Mia"
+      #input
+    />
   </mat-form-field>
-  
+
   <div class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource" matSort>
-  
       <!-- ID Column -->
       <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> # </th>
-        <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>#</th>
+        <td mat-cell *matCellDef="let row">{{ row.id }}</td>
       </ng-container>
-  
-      
 
-  
-      <!-- Fruit Column -->
+      <!-- Relation Column -->
       <ng-container matColumnDef="relation">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Relation </th>
-        <td mat-cell *matCellDef="let row"> {{row.relation}} </td>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Relation</th>
+        <td mat-cell *matCellDef="let row">{{ row.relation }}</td>
       </ng-container>
 
-           <!-- Fruit Column -->
-           <ng-container matColumnDef="relative.nom">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> relative </th>
-            <td mat-cell *matCellDef="let row"> {{row.relative.nom}} </td>
-          </ng-container>
-  
+      <!-- relative Column -->
+      <ng-container matColumnDef="relative.nom">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>relative</th>
+        <td mat-cell *matCellDef="let row">{{ row.relative.nom }}</td>
+      </ng-container>
+
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
       <!-- Row shown when there is no matching data. -->
       <tr class="mat-row" *matNoDataRow>
-        <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+        <td class="mat-cell" colspan="4">
+          No data matching the filter "{{ input.value }}"
+        </td>
       </tr>
-      
     </table>
-  
-    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="5" [length]="persons.length" aria-label="Select page of users"></mat-paginator>
+
+    <mat-paginator
+      [pageSizeOptions]="[5, 10, 25, 100]"
+      [pageSize]="5"
+      [length]="persons.length"
+      aria-label="Select page of users"
+    ></mat-paginator>
   </div>
   <div class="centerdiv">
-  <a (click)="addrelation()" style="margin-top: 25px;" class="btn btn-primary">Ajouter relation</a>
+    <a (click)="addrelation()" style="margin-top: 25px" class="btn btn-primary"
+      >Ajouter relation</a
+    >
+  </div>
+  <!-- Show a small card to add relations if the table is empty. -->
 </div>
-
-</div>
-  <ng-template #loggedOut>
-    <div style="margin-top: 35px">
-      <div class="card text-center">
-        <div class="card-header">
-          
-        </div>
-        <div class="card-body">
-          <h5 class="card-title">{{displayname}}</h5>
-          <p class="card-text">cette utilisateur n'a pas encore des relations voulez-vous ajouter une nouvelle relation ?</p>
-          <a (click)="addrelation()" class="btn btn-primary">Ajouter relation</a>
-        </div>
-      
+<ng-template #loggedOut>
+  <div style="margin-top: 35px">
+    <div class="card text-center">
+      <div class="card-header"></div>
+      <div class="card-body">
+        <h5 class="card-title">{{ displayname }}</h5>
+        <p class="card-text">
+          cette utilisateur n'a pas encore des relations voulez-vous ajouter une
+          nouvelle relation ?
+        </p>
+        <a (click)="addrelation()" class="btn btn-primary">Ajouter relation</a>
       </div>
     </div>
-    </ng-template>
+  </div>
+</ng-template>
