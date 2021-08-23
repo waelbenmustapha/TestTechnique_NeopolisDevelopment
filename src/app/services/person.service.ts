@@ -20,7 +20,11 @@ export class PersonService {
     
   }
   // fetching all people on the database using the Get Request api
-  getpersons():Observable<Person[]>{
-    return this.http.get<Person[]>(`http://localhost:8090/person/allpersons`)
+  getpersons():Observable<any[]>{
+    return this.http.get<any[]>(`http://localhost:8090/person/allpersons`)
+  }
+
+  getspecificperson(id:number):Observable<any[]>{
+    return this.http.get<any[]>(`http://localhost:8090/relations/specefic/${id}`)
   }
 }

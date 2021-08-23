@@ -1,6 +1,12 @@
-      <!-- Table containing all the users in the database and their relation ? "relations still in progress". -->
 
-<mat-form-field appearance="standard">
+<h2 style="text-align: center;margin-top: 35px;">{{displayname}}</h2>
+<!-- Table containing all the users in the database and their relation ? "relations still in progress". -->
+<div *ngIf="persons.length>0; else loggedOut">
+
+<h2 style="margin-top:35px;text-align:center  ">{{persons[0].personne.nom}}</h2>
+
+      <mat-form-field appearance="standard">
+        
     <mat-label>Filter</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
   </mat-form-field>
@@ -15,18 +21,19 @@
       </ng-container>
   
       
-  
-      <!-- Name Column -->
-      <ng-container matColumnDef="nom">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nom </th>
-        <td mat-cell *matCellDef="let row"> {{row.nom}} </td>
-      </ng-container>
+
   
       <!-- Fruit Column -->
       <ng-container matColumnDef="relation">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Relation </th>
-        <td mat-cell *matCellDef="let row"> {{row.prenom}} </td>
+        <td mat-cell *matCellDef="let row"> {{row.relation}} </td>
       </ng-container>
+
+           <!-- Fruit Column -->
+           <ng-container matColumnDef="relative.nom">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> relative </th>
+            <td mat-cell *matCellDef="let row"> {{row.relative.nom}} </td>
+          </ng-container>
   
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
@@ -38,4 +45,6 @@
     </table>
   
     <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="5" [length]="persons.length" aria-label="Select page of users"></mat-paginator>
-  </div>
+  </div></div>
+  <ng-template #loggedOut>
+    l'utilisateur n'a pas encore des relations voulez-vous ajouter une nouvelle relation ?</ng-template>

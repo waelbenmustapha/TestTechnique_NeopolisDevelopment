@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Country } from '@angular-material-extensions/select-country';
+import {Router} from '@angular/router';
+
 import {
   SearchCountryField,
   CountryISO,
@@ -90,7 +92,7 @@ export class FormComponent implements OnInit {
   showInfo: boolean = true;
 
   
-  constructor(private personserv: PersonService) {}
+  constructor(private personserv: PersonService,private router:Router) {}
 
   
   ngOnInit(): void {}
@@ -152,7 +154,8 @@ export class FormComponent implements OnInit {
       //call the service to add newPerson to the database
       this.personserv
         .add(newPerson)
-        .subscribe(() => console.log('add person done'));
+        .subscribe(() => {console.log('add person done');    this.router.navigate(['/peoples'])
+      });
     } else {
       // in case of an error in the form data forerror = true to throw an error 
       this.formerror = true;

@@ -23,11 +23,16 @@ import { RelationsComponent } from './components/relations/relations.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { PeoplesComponent } from './components/peoples/peoples.component';
+import { AddRelationComponent } from './components/add-relation/add-relation.component';
+import {MatCardModule} from '@angular/material/card';
 
 // each path and the component related to it
 const appRoutes: Routes = [
   { path: '', component: FormComponent },
-  { path: 'relations', component: RelationsComponent },
+  { path: 'relations/:name/:id', component: RelationsComponent },
+  {path:'peoples',component:PeoplesComponent},
+  {path:'addRelation',component:AddRelationComponent}
 ];
 @NgModule({
   declarations: [
@@ -36,13 +41,15 @@ const appRoutes: Routes = [
 
     HeaderComponent,
     RelationsComponent,
+    PeoplesComponent,
+    AddRelationComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MatSortModule,
     MatPaginatorModule,
-    MatTableModule,
+    MatTableModule,MatCardModule,
     RouterModule.forRoot(appRoutes, { enableTracing: true }),
     MatSelectCountryModule.forRoot('fr'),
     HttpClientModule,
